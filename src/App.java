@@ -27,22 +27,21 @@ public class App {
                     break;
 
                 case 3:
-                    if (SelectNave.nave == null) {
-                        System.err.println("No se ha seleccionado una nave. Por favor, elige una nave antes de continuar.");
-                        scan.nextLine();
-                        if (SelectPlanet.planet == null) {
-                        System.err.println("No se ha seleccionado un planeta destino. Por favor, elige un destino antes de continuar.");
+                    if (readyViaje(scan)) {
+                        System.out.println("El viaje comenzara en breve...");
+                        System.out.println("Iniciando el viaje progreso: ");
+                        for (int i = 0; i <= 100; i++) {
+                            System.out.print(i + "% ...");
+                            Thread.sleep(1500);
+                            System.out.print("\r");
+                            if (i == 50) {
+                                System.out.println("Estamos a mitad de camino ");
+                            }
+                            if (i == 100) {
+                                System.out.println("El viaje ha finalizado. Gracias por participar!");
+                            }
+
                         }
-                    }else{
-                        var distance = SelectPlanet.distancePlanet;
-                        var maxSpeed = SelectNave.maxSpeedNave;
-                        var maxSpeedDay = maxSpeed * 24;
-                        var time = distance / maxSpeedDay;
-                        System.out.println("Destino: " + SelectPlanet.planet );
-                        System.out.println("Nave Seleccionada: " + SelectNave.nave);
-                        System.out.println("Distancia: " + distance + " Kilómetros");
-                        System.out.println("Tiempo estimado de viaje: "+ time + " dias" );
-                        scan.nextLine();
                     }
                     break;
 
@@ -51,7 +50,7 @@ public class App {
                     System.out.print("Saliendo del programa...");
                     break;
                 
-            //hola prueba de rama
+            
                 default:
                 System.err.println("Opción invalida. Por favor elija una opción valida");
                     break;
@@ -61,6 +60,28 @@ public class App {
 
         }while(!salir);
 
+    }
+
+    private static boolean readyViaje(Scanner scan) {
+        if (SelectNave.nave == null) {
+            System.err.println("No se ha seleccionado una nave. Por favor, elige una nave antes de continuar.");
+            scan.nextLine();
+            if (SelectPlanet.planet == null) {
+            System.err.println("No se ha seleccionado un planeta destino. Por favor, elige un destino antes de continuar.");
+            }
+            return false;
+        }else{
+            var distance = SelectPlanet.distancePlanet;
+            var maxSpeed = SelectNave.maxSpeedNave;
+            var maxSpeedDay = maxSpeed * 24;
+            var time = distance / maxSpeedDay;
+            System.out.println("Destino: " + SelectPlanet.planet );
+            System.out.println("Nave Seleccionada: " + SelectNave.nave);
+            System.out.println("Distancia: " + distance + " Kilómetros");
+            System.out.println("Tiempo estimado de viaje: "+ time + " dias" );
+            scan.nextLine();
+            return true;
+        }
     }
     
 
