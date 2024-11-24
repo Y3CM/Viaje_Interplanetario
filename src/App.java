@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import functions.SelectPlanet;
+import functions.*;
 public class App {
     public static void main(String[] args) throws Exception {
         var scan = new Scanner(System.in);
@@ -23,11 +23,27 @@ public class App {
                     break;
 
                 case 2:
-                    
+                    SelectNave.getAllNaves();
                     break;
 
                 case 3:
-                    
+                    if (SelectNave.nave == null) {
+                        System.err.println("No se ha seleccionado una nave. Por favor, elige una nave antes de continuar.");
+                        scan.nextLine();
+                        if (SelectPlanet.planet == null) {
+                        System.err.println("No se ha seleccionado un planeta destino. Por favor, elige un destino antes de continuar.");
+                        }
+                    }else{
+                        var distance = SelectPlanet.distancePlanet;
+                        var maxSpeed = SelectNave.maxSpeedNave;
+                        var maxSpeedDay = maxSpeed * 24;
+                        var time = distance / maxSpeedDay;
+                        System.out.println("Destino: " + SelectPlanet.planet );
+                        System.out.println("Nave Seleccionada: " + SelectNave.nave);
+                        System.out.println("Distancia: " + distance + " Kilómetros");
+                        System.out.println("Tiempo estimado de viaje: "+ time + " dias" );
+                        scan.nextLine();
+                    }
                     break;
 
                 case 0:
@@ -41,14 +57,11 @@ public class App {
                     break;
             }
             
-            pressEnter(scan);
+           SelectPlanet.pressEnter(scan);
 
         }while(!salir);
 
     }
     
-    private static void pressEnter(Scanner scan) {
-        System.out.println("Presione ENTER para continuar...");
-        scan.nextLine();
-    }
+
 }
