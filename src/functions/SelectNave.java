@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class SelectNave { 
         public static String nave = null;
         public static int maxSpeedNave = 0;
+        public static int crewNave = 0;
         public static void getAllNaves(){
             var scan = new Scanner(System.in);
             boolean salir = false;
@@ -60,6 +61,7 @@ public class SelectNave {
                         System.out.println(description[opcion - 1]);
                         nave = naves[opcion - 1];
                         maxSpeedNave = maxSpeed[opcion - 1];
+                        crewNave = crew[opcion - 1];
                         
                         break;
                 

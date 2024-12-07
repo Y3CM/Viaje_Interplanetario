@@ -27,24 +27,20 @@ public class App {
                     break;
 
                 case 3:
-                    if (readyViaje(scan)) {
-                        System.out.println("El viaje comenzara en breve...");
-                        System.out.println("Iniciando el viaje progreso: ");
-                        for (int i = 0; i <= 100; i++) {
-                            System.out.print(i + "% ...");
-                            Thread.sleep(1500);
-                            System.out.print("\r");
-                            if (i == 50) {
-                                System.out.println("Estamos a mitad de camino ");
-                            }
-                            if (i == 100) {
-                                System.out.println("El viaje ha finalizado. Gracias por participar!");
-                            }
+                System.out.println("Ingresa el numero de tripulantes para despegar");
+                int tripulantes = scan.nextInt();
+                scan.nextLine();
+                if (chechNegative(tripulantes)) {
+                    if (tripulantes <= SelectNave.crewNave) {
 
-                        }
+                        simulacionViaje(scan);
+                    } else {
+                        System.out.println("el numero de tripulantes supera la capacidad de la nave,");
+                        System.out.println("capacidad maxima de la nave " + SelectNave.crewNave + " tripulantes");
                     }
+                } 
                     break;
-
+ 
                 case 0:
                     salir = true;
                     System.out.print("Saliendo del programa...");
@@ -60,6 +56,33 @@ public class App {
 
         }while(!salir);
 
+    }public static boolean chechNegative(int tripulantes) {
+        if (tripulantes > 0) {
+            return true;
+        }
+        System.out.println("valor no permitido, recuerda insertar un valor mayor que cero");
+                return false;
+    }
+
+
+
+    private static void simulacionViaje(Scanner scan) throws InterruptedException {
+        if (readyViaje(scan)) {
+            System.out.println("El viaje comenzara en breve...");
+            System.out.println("Iniciando el viaje progreso: ");
+            for (int i = 0; i <= 100; i++) {
+                System.out.print(i + "% ...");
+                Thread.sleep(1000);
+                System.out.print("\r");
+                if (i == 50) {
+                    System.out.println("Estamos a mitad de camino ");
+                }
+                if (i == 100) {
+                    System.out.println("El viaje ha finalizado. Gracias por participar!");
+                }
+
+            }
+        }
     }
 
     private static boolean readyViaje(Scanner scan) {
@@ -83,6 +106,5 @@ public class App {
             return true;
         }
     }
-    
 
 }
