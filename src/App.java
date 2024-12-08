@@ -27,18 +27,21 @@ public class App {
                     break;
 
                 case 3:
-                System.out.println("Ingresa el numero de tripulantes para despegar");
-                int tripulantes = scan.nextInt();
-                scan.nextLine();
-                if (chechNegative(tripulantes)) {
-                    if (tripulantes <= SelectNave.crewNave) {
+                if(readyViaje(scan)){
+                    System.out.println("Ingresa el numero de tripulantes para despegar");
+                    int tripulantes = scan.nextInt();
+                    scan.nextLine();
+                    if (chechNegative(tripulantes)) {
+                        if (tripulantes <= SelectNave.crewNave) {
+                            simulacionViaje(scan);
 
-                        simulacionViaje(scan);
-                    } else {
-                        System.out.println("el numero de tripulantes supera la capacidad de la nave,");
-                        System.out.println("capacidad maxima de la nave " + SelectNave.crewNave + " tripulantes");
+                        } else {
+                            System.out.println("el numero de tripulantes supera la capacidad de la nave,");
+                            System.out.println("capacidad maxima de la nave " + SelectNave.crewNave + " tripulantes");
+                        }
                     }
-                } 
+                }
+               
                     break;
  
                 case 0:
